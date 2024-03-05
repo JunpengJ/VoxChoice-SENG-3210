@@ -83,7 +83,9 @@
             android:id="@+id/log_in_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Log In" />
+            android:backgroundTint="@color/button"
+            android:text="Log In"
+            app:rippleColor="@color/button" />
 
         <Space
             android:layout_width="match_parent"
@@ -96,7 +98,7 @@
             android:clickable="true"
             android:text="Register"
             android:textAlignment="center"
-            android:textColor="#673AB7"
+            android:textColor="@color/button"
             android:textStyle="bold" />
 
     </LinearLayout>
