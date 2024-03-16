@@ -2,7 +2,15 @@ package com.example.voxchoice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -10,5 +18,36 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView username = (TextView) findViewById(R.id.username_log_in);
+        TextView password = (TextView) findViewById(R.id.password_log_in);
+        Button log_in_button = (Button) findViewById(R.id.log_in_button);
+        TextView register_button = (TextView) findViewById(R.id.register_clickable);
+
+        log_in_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                TODO: Connect DB
+
+                String un = username.getText().toString();
+                String pass = password.getText().toString();
+
+                if (username.getText().toString().equals("admin") && password.getText().toString().equals("1234")) {
+                    Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this, AdminMain.class));
+                } else if(username.getText().toString().equals("user") && password.getText().toString().equals("1234")){
+                    Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this, VoterMain.class));
+                } else {
+                    Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        register_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Registration.class));
+            }
+        });
     }
 }
