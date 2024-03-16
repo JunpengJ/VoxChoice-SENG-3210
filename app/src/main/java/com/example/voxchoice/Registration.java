@@ -11,6 +11,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.voxchoice.model.FirebaseConnector;
+
 import java.util.Objects;
 
 public class Registration extends AppCompatActivity {
@@ -37,8 +39,9 @@ public class Registration extends AppCompatActivity {
                 String un = username.getText().toString();
                 String pass = password.getText().toString();
                 String accType = "VOTER";
-//                final boolean[] un_exists = {false};
                 if (admin_switch.isChecked()) accType = "ADMIN";
+
+                FirebaseConnector.addUser(un, pass, accType);
             }
         });
         register_back_button.setOnClickListener(new View.OnClickListener() {
