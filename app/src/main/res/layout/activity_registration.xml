@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Registration">
+
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="332dp"
-        android:layout_height="303dp"
+        android:layout_width="331dp"
+        android:layout_height="319dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +67,7 @@
                 android:layout_weight="1" />
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/password_register"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -80,11 +81,35 @@
             android:layout_width="match_parent"
             android:layout_height="50dp" />
 
+        <Switch
+            android:id="@+id/admin_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Admin Account"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
         <Button
             android:id="@+id/register_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/button"
             android:text="Register" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <Button
+            android:id="@+id/register_back_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/button"
+            android:text="Back" />
 
     </LinearLayout>
 
@@ -102,7 +127,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintVertical_bias="0.585" />
 
     <TextView
         android:id="@+id/register"
@@ -112,12 +137,12 @@
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="#000000"
-        android:textSize="84sp"
+        android:textSize="72sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.622" />
+        app:layout_constraintVertical_bias="0.67" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

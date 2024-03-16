@@ -2,7 +2,16 @@ package com.example.voxchoice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Objects;
 
 public class Registration extends AppCompatActivity {
 
@@ -10,5 +19,33 @@ public class Registration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+        TextView username = (TextView) findViewById(R.id.username_register);
+        TextView password = (TextView) findViewById(R.id.password_register);
+        Button register_button = (Button) findViewById(R.id.register_button);
+        TextView register_back_button = (TextView) findViewById(R.id.register_back_button);
+        Switch admin_switch = (Switch) findViewById(R.id.admin_switch);
+
+        register_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                TODO: Check DB entry for username existing
+//                if (username.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
+//                    Toast.makeText(Registration.this, "Fields Cannot Be Blank", Toast.LENGTH_SHORT).show();
+//                } else {
+
+                String un = username.getText().toString();
+                String pass = password.getText().toString();
+                String accType = "VOTER";
+//                final boolean[] un_exists = {false};
+                if (admin_switch.isChecked()) accType = "ADMIN";
+            }
+        });
+        register_back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Registration.this, MainActivity.class));
+            }
+        });
     }
 }
