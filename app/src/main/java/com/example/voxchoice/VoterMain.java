@@ -26,7 +26,7 @@ public class VoterMain extends AppCompatActivity {
         button_log_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(VoterMain.this, MainActivity.class));
+                finish();
             }
         });
     }

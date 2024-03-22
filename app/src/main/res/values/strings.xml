@@ -1,4 +1,3 @@
 <resources>
     <string name="app_name">VoxChoice</string>
-    <string name="firebase_url">https://voxchoice-5d7c9-default-rtdb.firebaseio.com/</string>
 </resources>

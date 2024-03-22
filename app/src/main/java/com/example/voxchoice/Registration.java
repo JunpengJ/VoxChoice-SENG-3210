@@ -47,7 +47,7 @@ public class Registration extends AppCompatActivity {
         register_back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Registration.this, MainActivity.class));
+                finish();
             }
         });
     }
