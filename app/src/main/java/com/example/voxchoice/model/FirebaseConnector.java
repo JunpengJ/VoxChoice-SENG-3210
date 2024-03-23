@@ -27,6 +27,7 @@ public class FirebaseConnector {
         database = FirebaseDatabase.getInstance(FIREBASE_URL);
         databaseReference = database.getReference("users");
         databaseReference.child(newUser.toString()).push().setValue(newUser); // "push()" automatically generates a key for entry
+//        TODO: If successful, toast "Registration successful"; else "Registration failed"
     }
 
     public interface LoginCallback {
