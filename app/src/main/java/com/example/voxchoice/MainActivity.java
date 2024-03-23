@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.voxchoice.model.FirebaseConnector;
+
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
                 String un = username.getText().toString();
                 String pass = password.getText().toString();
 
+//                NOTE: Uncomment to test login offline
+/*
                 if (username.getText().toString().equals("admin") && password.getText().toString().equals("1234")) {
                     Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(MainActivity.this, AdminMain.class));
@@ -41,6 +45,24 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 }
+                Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+*/
+                FirebaseConnector.checkLogin(un, pass, new FirebaseConnector.LoginCallback() {
+                    @Override
+                    public void onLoginResult(String accountType) {
+                        String loginAttempt = accountType;
+                        System.out.println(loginAttempt);
+                        if (loginAttempt == "ADMIN") {
+                            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(MainActivity.this, AdminMain.class));
+                        } else if (loginAttempt == "VOTER") {
+                            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(MainActivity.this, VoterMain.class));
+                        } else {
+                            Toast.makeText(MainActivity.this, "Wrong Username or Password", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
         register_button.setOnClickListener(new View.OnClickListener() {

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "654749235211",
+    "project_id": "voxchoice-5d7c9",
+    "storage_bucket": "voxchoice-5d7c9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654749235211:android:e1f7bf399576e25f7b2f0e",
+        "android_client_info": {
+          "package_name": "com.example.voxchoice"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIA-fgbk1dXWSP_G8J4LeE5rqDzKvVrrQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

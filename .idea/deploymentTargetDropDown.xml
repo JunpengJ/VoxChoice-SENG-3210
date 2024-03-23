@@ -2,19 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="VoxChoice-SENG-3210.VoxChoice.app">
-        <State />
-      </entry>
       <entry key="app">
-        <State />
-      </entry>
-      <entry key="app.androidTest">
-        <State />
-      </entry>
-      <entry key="app.main">
-        <State />
-      </entry>
-      <entry key="app.unitTest">
         <State />
       </entry>
     </value>
