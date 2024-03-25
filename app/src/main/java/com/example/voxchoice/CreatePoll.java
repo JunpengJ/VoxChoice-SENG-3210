@@ -57,13 +57,16 @@ public class CreatePoll extends AppCompatActivity {
 
         String title = titleEditText.getText().toString();
         String question = questionEditText.getText().toString();
+        if(!title.isEmpty() && !question.isEmpty() && !options.isEmpty() && !placeholderVotes.isEmpty()) {
+            Poll newPoll = new Poll(title, question, options, placeholderVotes);
+            database = FirebaseDatabase.getInstance("https://voxchoice-5d7c9-default-rtdb.firebaseio.com/");
+            databaseReference = database.getReference("polls");
+            databaseReference.child(newPoll.toString()).setValue(newPoll);
 
-        Poll newPoll = new Poll(title, question, options, placeholderVotes);
-        database = FirebaseDatabase.getInstance("https://voxchoice-5d7c9-default-rtdb.firebaseio.com/");
-        databaseReference = database.getReference("polls");
-        databaseReference.child(newPoll.toString()).setValue(newPoll);
-
-        Toast.makeText(CreatePoll.this, "Poll Created", Toast.LENGTH_SHORT).show();
-        finish();
+            Toast.makeText(CreatePoll.this, "Poll Created", Toast.LENGTH_SHORT).show();
+            finish();
+        } else {
+            Toast.makeText(CreatePoll.this, "Fields Cannot Be Empty", Toast.LENGTH_SHORT).show();
+        }
     }
 }
