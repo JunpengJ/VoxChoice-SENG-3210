@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.voxchoice.model.Poll;
-import com.example.voxchoice.model.PollAdapter;
+import com.example.voxchoice.model.DeletePollAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +29,7 @@ public class ManagePolls extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference databaseReference;
     private RecyclerView recyclerView;
-    private PollAdapter pollAdapter;
+    private DeletePollAdapter deletePollAdapter;
     private List<Poll> pollList = new ArrayList<>();
 
     @Override
@@ -39,10 +39,10 @@ public class ManagePolls extends AppCompatActivity {
 
         Button button_create_poll = (Button) findViewById(R.id.button_create_poll);
 
-        recyclerView = findViewById(R.id.pollRecyclerView);
-        pollAdapter = new PollAdapter(pollList);
+        recyclerView = findViewById(R.id.deletePollRecyclerView);
+        deletePollAdapter = new DeletePollAdapter(pollList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(pollAdapter);
+        recyclerView.setAdapter(deletePollAdapter);
 
         button_create_poll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,12 +59,16 @@ public class ManagePolls extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                pollList.clear();
-                for (DataSnapshot taskSnapshot : dataSnapshot.getChildren()) {
-                    Poll poll = taskSnapshot.getValue(Poll.class);
-                    pollList.add(poll);
+                if (dataSnapshot.exists()) {
+                    String value = "dataSnapshot: " + dataSnapshot.getValue().toString();
+                    Log.d("firebase", value);
+                    pollList.clear();
+                    for (DataSnapshot pollSnapshot : dataSnapshot.getChildren()) {
+                        Poll poll = pollSnapshot.getValue(Poll.class);
+                        pollList.add(poll);
+                    }
+                    deletePollAdapter.notifyDataSetChanged();
                 }
-                pollAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -87,8 +91,25 @@ public class ManagePolls extends AppCompatActivity {
                         Toast.makeText(ManagePolls.this, title + " deleted", Toast.LENGTH_SHORT).show();
                         database = FirebaseDatabase.getInstance("https://voxchoice-5d7c9-default-rtdb.firebaseio.com/");
                         databaseReference = database.getReference("polls");
-                        databaseReference.child(title).removeValue();
-                        pollAdapter.notifyDataSetChanged();
+
+                        // Retrieve the entire Poll object from Firebase
+                        databaseReference.child(title).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                Poll poll = dataSnapshot.getValue(Poll.class);
+                                if (poll != null) {
+                                    // Remove the poll from Firebase
+                                    dataSnapshot.getRef().removeValue();
+                                    deletePollAdapter.notifyDataSetChanged();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                // Handle errors
+                                Log.e("DatabaseError", databaseError.getMessage());
+                            }
+                        });
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -99,7 +120,5 @@ public class ManagePolls extends AppCompatActivity {
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
-
-        pollAdapter.notifyDataSetChanged();
     }
 }
