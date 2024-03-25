@@ -47,8 +47,7 @@ public class PollAdapter extends RecyclerView.Adapter<PollAdapter.PollViewHolder
         }
 
         public void bind(Poll poll) {
-            String deleteButtonText = "Delete \"" + poll.getTitle() + "\"";
-            titleButton.setText(deleteButtonText);
+            titleButton.setText(poll.getTitle());
         }
     }
 }

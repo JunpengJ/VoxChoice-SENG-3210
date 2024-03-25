@@ -77,8 +77,6 @@ public class ManagePolls extends AppCompatActivity {
     public void deletePoll(View view) {
         Button button_poll_title = (Button) view;
         String title = button_poll_title.getText().toString();
-//        database = FirebaseDatabase.getInstance("https://voxchoice-5d7c9-default-rtdb.firebaseio.com/");
-//        databaseReference = database.getReference("polls");
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         String alertMessage = "Delete \"" + title +"\"?";
         builder.setMessage(alertMessage)
@@ -87,7 +85,10 @@ public class ManagePolls extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         // DELETE
                         Toast.makeText(ManagePolls.this, title + " deleted", Toast.LENGTH_SHORT).show();
+                        database = FirebaseDatabase.getInstance("https://voxchoice-5d7c9-default-rtdb.firebaseio.com/");
+                        databaseReference = database.getReference("polls");
                         databaseReference.child(title).removeValue();
+                        pollAdapter.notifyDataSetChanged();
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
