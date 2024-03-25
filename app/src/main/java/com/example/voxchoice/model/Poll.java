@@ -57,11 +57,5 @@ public class Poll {
     @Override
     public String toString() {
         return this.title;
-//                "Poll{" +
-//                "title='" + title + '\'' +
-//                ", question='" + question + '\'' +
-//                ", options=" + Arrays.toString(options) +
-//                ", votes=" + Arrays.toString(votes) +
-//                '}';
     }
 }

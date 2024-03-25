@@ -27,8 +27,8 @@ public class CreatePoll extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_poll);
 
-        Button button_add_option = (Button) findViewById(R.id.button_add_option);
-        Button button_create_poll = (Button) findViewById(R.id.button_create_poll);
+        Button button_add_option = findViewById(R.id.button_add_option);
+        Button button_create_poll = findViewById(R.id.button_create_poll);
 
         button_add_option.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +43,7 @@ public class CreatePoll extends AppCompatActivity {
             }
         });
     }
+
     public void addOption() {
         EditText optionText = findViewById(R.id.optionEditText);
         String option = optionText.getText().toString();
@@ -51,17 +52,22 @@ public class CreatePoll extends AppCompatActivity {
         optionText.setText("");
         Toast.makeText(CreatePoll.this, "Option Added", Toast.LENGTH_SHORT).show();
     }
+
     public void createPoll(View view) {
         EditText titleEditText = findViewById(R.id.titleEditText);
         EditText questionEditText = findViewById(R.id.questionEditText);
 
         String title = titleEditText.getText().toString();
         String question = questionEditText.getText().toString();
-        if(!title.isEmpty() && !question.isEmpty() && !options.isEmpty() && !placeholderVotes.isEmpty()) {
+        if (!title.isEmpty() && !question.isEmpty() && !options.isEmpty() && !placeholderVotes.isEmpty()) {
             Poll newPoll = new Poll(title, question, options, placeholderVotes);
+
+            // Get reference to the "polls" node in the database
             database = FirebaseDatabase.getInstance("https://voxchoice-5d7c9-default-rtdb.firebaseio.com/");
             databaseReference = database.getReference("polls");
-            databaseReference.child(newPoll.toString()).setValue(newPoll);
+
+            // Set the poll under the title node directly
+            databaseReference.child(title).setValue(newPoll);
 
             Toast.makeText(CreatePoll.this, "Poll Created", Toast.LENGTH_SHORT).show();
             finish();

@@ -51,13 +51,10 @@ public class FirebaseConnector {
         database = FirebaseDatabase.getInstance(FIREBASE_URL);
         databaseReference = database.getReference("users");
 
-        Log.d("firebase", "in checkLogin");
-
         for (User newUser : userType) {
             databaseReference.child(newUser.toString()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> user) {
-                    Log.d("firebase", "in onComplete");
                     if (!user.isSuccessful()) {
                         Log.e("firebase", "Error getting data", user.getException());
                     } else {
@@ -67,7 +64,7 @@ public class FirebaseConnector {
                             for (DataSnapshot userSnapshot : snapshot.getChildren()) {
                                 User foundUser = userSnapshot.getValue(User.class);
                                 if (foundUser != null) {
-                                    System.out.println(foundUser.getAccount_type());
+//                                    System.out.println(foundUser.getAccount_type());
                                     callback.onLoginResult(newUser.account_type);
                                     return;
                                 } else if (numOfLoops[0] == 2) {

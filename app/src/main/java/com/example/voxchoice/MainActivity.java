@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
         log_in_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                TODO: Connect DB
-
                 String un = username.getText().toString();
                 String pass = password.getText().toString();
 
@@ -55,9 +53,11 @@ public class MainActivity extends AppCompatActivity {
                         if (loginAttempt == "ADMIN") {
                             Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(MainActivity.this, AdminMain.class));
+                            password.setText("");
                         } else if (loginAttempt == "VOTER") {
                             Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(MainActivity.this, VoterMain.class));
+                            password.setText("");
                         } else {
                             Toast.makeText(MainActivity.this, "Wrong Username or Password", Toast.LENGTH_SHORT).show();
                         }
