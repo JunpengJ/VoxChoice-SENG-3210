@@ -1,9 +1,15 @@
 package com.example.voxchoice.model;
+
+import androidx.annotation.NonNull;
+
+import java.util.Arrays;
+import java.util.List;
+
 public class Poll {
     public String title;
     public String question;
-    public String[] options;
-    public int[] votes;
+    public List<String> options;
+    public List<Integer> votes;
 
     public Poll(){
     }
@@ -11,7 +17,13 @@ public class Poll {
         this.title = title;
         this.question = question;
     }
-    public Poll(String title, String question, String[] options, int[] votes){
+    public Poll(String title, String question, List<String> options){
+        this.title = title;
+        this.question = question;
+        this.options = options;
+        this.votes = votes;
+    }
+    public Poll(String title, String question, List<String> options, List<Integer> votes){
         this.title = title;
         this.question = question;
         this.options = options;
@@ -28,17 +40,28 @@ public class Poll {
         this.question = question;
     }
 
-    public String[] getOptions() {
+    public List<String> getOptions() {
         return options;
     }
-    public void setOptions(String[] options) {
+    public void setOptions(List<String> options) {
         this.options = options;
     }
 
-    public int[] getVotes() {
+    public List<Integer> getVotes() {
         return votes;
     }
-    public void setVotes(int[] votes) {
+    public void setVotes(List<Integer> votes) {
         this.votes = votes;
+    }
+
+    @Override
+    public String toString() {
+        return this.title;
+//                "Poll{" +
+//                "title='" + title + '\'' +
+//                ", question='" + question + '\'' +
+//                ", options=" + Arrays.toString(options) +
+//                ", votes=" + Arrays.toString(votes) +
+//                '}';
     }
 }
