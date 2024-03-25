@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreatePoll">
+
+    <Button
+        android:id="@+id/button_create_poll"
+        android:layout_width="375dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="64dp"
+        android:backgroundTint="@color/button"
+        android:text="Create Poll"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@color/button" />
+
+    <TextView
+        android:id="@+id/voxChoiceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
+        android:text="VoxChoice"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.114" />
+
+    <EditText
+        android:id="@+id/titleEditText"
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Title"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/questionEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/voxChoiceTitle"
+        app:layout_constraintVertical_bias="0.824" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create a Poll"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/titleEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/voxChoiceTitle" />
+
+    <EditText
+        android:id="@+id/questionEditText"
+        android:layout_width="375dp"
+        android:layout_height="100dp"
+        android:ems="10"
+        android:hint="Question"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/voxChoiceTitle"
+        app:layout_constraintVertical_bias="0.897" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="375dp"
+        android:layout_height="150dp"
+        android:background="#12000000"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/button_create_poll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/voxChoiceTitle"
+        app:layout_constraintVertical_bias="0.89">
+
+        <EditText
+            android:id="@+id/optionEditText"
+            android:layout_width="375dp"
+            android:layout_height="75dp"
+            android:ems="10"
+            android:hint="Option"
+            android:inputType="text" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <Button
+            android:id="@+id/button_add_option"
+            android:layout_width="375dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/button"
+            android:text="Add Option"
+            app:rippleColor="@color/button" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

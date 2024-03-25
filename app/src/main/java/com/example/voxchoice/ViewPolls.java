@@ -5,11 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import com.example.voxchoice.model.Poll;
 import com.example.voxchoice.model.PollAdapter;
@@ -22,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManagePolls extends AppCompatActivity {
+public class ViewPolls extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference databaseReference;
     private RecyclerView recyclerView;
@@ -32,21 +30,22 @@ public class ManagePolls extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_polls);
+        setContentView(R.layout.activity_view_polls);
 
-        Button button_create_poll = (Button) findViewById(R.id.button_create_poll);
+//        Button btnAddTask = (Button) findViewById(R.id.btnAdd);
+//        Button btnLoadTask = (Button) findViewById(R.id.btnLoad);
 
         recyclerView = findViewById(R.id.pollRecyclerView);
         pollAdapter = new PollAdapter(pollList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(pollAdapter);
 
-        button_create_poll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ManagePolls.this, CreatePoll.class));
-            }
-        });
+//        btnLoadTask.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                loadTasks(v);
+//            }
+//        });
         View v = null;
         loadPolls(v);
     }

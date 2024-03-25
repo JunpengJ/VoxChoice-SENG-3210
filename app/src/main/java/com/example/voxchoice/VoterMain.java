@@ -20,7 +20,7 @@ public class VoterMain extends AppCompatActivity {
         button_view_polls.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(VoterMain.this, Polls.class));
+                startActivity(new Intent(VoterMain.this, ViewPolls.class));
             }
         });
         button_log_out.setOnClickListener(new View.OnClickListener() {
