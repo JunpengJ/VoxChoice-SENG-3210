@@ -3,7 +3,7 @@ package com.example.voxchoice.model;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,11 +15,11 @@ import java.util.List;
 public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.OptionViewHolder> {
 
     private List<String> options;
-    private OnOptionClickListener listener;
+    private List<Integer> votes;
 
-    public DashboardAdapter(List<String> options, OnOptionClickListener listener) {
+    public DashboardAdapter(List<String> options,List<Integer> votes) {
         this.options = options;
-        this.listener = listener;
+        this.votes = votes;
     }
 
     @NonNull
@@ -32,7 +32,8 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Opti
     @Override
     public void onBindViewHolder(@NonNull OptionViewHolder holder, int position) {
         String option = options.get(position);
-        holder.bind(option);
+        int voteCount = votes.get(position);
+        holder.bind(option, voteCount);
     }
 
     @Override
@@ -40,29 +41,19 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Opti
         return options.size();
     }
 
-    public class OptionViewHolder extends RecyclerView.ViewHolder {
-        private Button optionButton;
+    public static class OptionViewHolder extends RecyclerView.ViewHolder {
+        private TextView optionTextView;
+        private TextView voteCountTextView;
 
         public OptionViewHolder(@NonNull View itemView) {
             super(itemView);
-            optionButton = itemView.findViewById(R.id.optionButton);
-            optionButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        listener.onOptionClick(position);
-                    }
-                }
-            });
+            optionTextView = itemView.findViewById(R.id.optionTextView);
+            voteCountTextView = itemView.findViewById(R.id.voteCountTextView);
         }
 
-        public void bind(String option) {
-            optionButton.setText(option);
+        public void bind(String option, int voteCount) {
+            optionTextView.setText(option);
+            voteCountTextView.setText("Votes: " + voteCount); // Make sure voteCount is an integer representing the vote count
         }
-    }
-
-    public interface OnOptionClickListener {
-        void onOptionClick(int position);
     }
 }
