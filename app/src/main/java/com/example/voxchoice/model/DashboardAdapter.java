@@ -1,10 +1,9 @@
 package com.example.voxchoice.model;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,51 +12,57 @@ import com.example.voxchoice.R;
 
 import java.util.List;
 
-public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.PollViewHolder> {
+public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.OptionViewHolder> {
 
-    private static Context context;
-    private List<Poll> pollList;
+    private List<String> options;
+    private OnOptionClickListener listener;
 
-    public DashboardAdapter(Context context, List<Poll> pollList) {
-        this.context = context;
-        this.pollList = pollList;
+    public DashboardAdapter(List<String> options, OnOptionClickListener listener) {
+        this.options = options;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
-    public PollViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.dashboard_items, parent, false);
-        return new PollViewHolder(view);
+    public OptionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dashboard_items, parent, false);
+        return new OptionViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PollViewHolder holder, int position) {
-        Poll poll = pollList.get(position);
-        holder.bind(poll);
+    public void onBindViewHolder(@NonNull OptionViewHolder holder, int position) {
+        String option = options.get(position);
+        holder.bind(option);
     }
 
     @Override
     public int getItemCount() {
-        return pollList.size();
+        return options.size();
     }
 
-    public static class PollViewHolder extends RecyclerView.ViewHolder {
+    public class OptionViewHolder extends RecyclerView.ViewHolder {
+        private Button optionButton;
 
-        private TextView titleTextView;
-        private TextView questionTextView;
-        private RecyclerView optionsRecyclerView;
-
-        public PollViewHolder(@NonNull View itemView) {
+        public OptionViewHolder(@NonNull View itemView) {
             super(itemView);
-            titleTextView = itemView.findViewById(R.id.pollTitleTextView);
-            optionsRecyclerView = itemView.findViewById(R.id.optionsRecyclerView);
+            optionButton = itemView.findViewById(R.id.optionButton);
+            optionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onOptionClick(position);
+                    }
+                }
+            });
         }
 
-        public void bind(Poll poll) {
-            titleTextView.setText(poll.getTitle());
-            questionTextView.setText(poll.getQuestion());
-
-            // Create and set adapter for options RecyclerView
+        public void bind(String option) {
+            optionButton.setText(option);
         }
+    }
+
+    public interface OnOptionClickListener {
+        void onOptionClick(int position);
     }
 }
