@@ -17,6 +17,7 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Opti
     private List<String> options;
     private List<Integer> votes;
 
+
     public DashboardAdapter(List<String> options,List<Integer> votes) {
         this.options = options;
         this.votes = votes;
@@ -44,6 +45,8 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.Opti
     public static class OptionViewHolder extends RecyclerView.ViewHolder {
         private TextView optionTextView;
         private TextView voteCountTextView;
+
+
 
         public OptionViewHolder(@NonNull View itemView) {
             super(itemView);

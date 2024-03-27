@@ -36,6 +36,9 @@ public class DashboardItemActivity extends AppCompatActivity {
         // Retrieve pollTitle from intent extras
         pollTitle = getIntent().getStringExtra("pollTitle");
 
+        TextView pollTitleTextView = findViewById(R.id.pollTitleTextView);
+        pollTitleTextView.setText(pollTitle);
+
         questionTextView = findViewById(R.id.questionTextView);
         optionsRecyclerView = findViewById(R.id.dashboardItemRecyclerView);
         optionsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
