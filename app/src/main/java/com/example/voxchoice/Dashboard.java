@@ -21,8 +21,8 @@ import java.util.List;
 
 public class Dashboard extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private DashboardAdapter.ViewPollAdapter DashboardAdapter; // Adjusted adapter name
+    public RecyclerView recyclerView;
+    private DashboardAdapter dashboardAdapter;
     private List<Poll> pollList;
 
     private FirebaseDatabase database;
@@ -33,16 +33,16 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        // Initialize RecyclerView
-        recyclerView = findViewById(R.id.optionsRecyclerView);
+        // Initialize RecyclerView12
+        recyclerView = findViewById(R.id.dashboardRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Initialize pollList
         pollList = new ArrayList<>();
 
         // Initialize adapter and set it to RecyclerView
-        DashboardAdapter = new DashboardAdapter.ViewPollAdapter(this, pollList);
-        recyclerView.setAdapter(DashboardAdapter);
+        dashboardAdapter = new DashboardAdapter(this, pollList);
+        recyclerView.setAdapter(dashboardAdapter);
 
         // Initialize Firebase
         database = FirebaseDatabase.getInstance("https://voxchoice-5d7c9-default-rtdb.firebaseio.com/");
@@ -61,7 +61,7 @@ public class Dashboard extends AppCompatActivity {
                     Poll poll = snapshot.getValue(Poll.class);
                     pollList.add(poll);
                 }
-                DashboardAdapter.notifyDataSetChanged();
+                dashboardAdapter.notifyDataSetChanged();
             }
 
             @Override
