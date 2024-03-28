@@ -62,7 +62,6 @@ public class ViewPolls extends AppCompatActivity implements ViewPollAdapter.OnPo
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle errors
                 Log.e("DatabaseError", databaseError.getMessage());
             }
         });

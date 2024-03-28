@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.voxchoice.model.OptionAdapter;
+import com.example.voxchoice.model.DashboardAdapter;
 import com.example.voxchoice.model.Poll;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,10 +19,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class VoteActivity extends AppCompatActivity {
+public class DashboardItemActivity extends AppCompatActivity {
     private String pollTitle;
     private RecyclerView optionsRecyclerView;
-    private OptionAdapter optionAdapter;
+    private DashboardAdapter dashboardAdapter;
     private TextView questionTextView;
     private Poll poll;
 
@@ -31,13 +31,15 @@ public class VoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vote);
+        setContentView(R.layout.activity_dashboard_item);
 
-        // Retrieve pollTitle from intent extras
         pollTitle = getIntent().getStringExtra("pollTitle");
 
+        TextView pollTitleTextView = findViewById(R.id.pollTitleTextView);
+        pollTitleTextView.setText(pollTitle);
+
         questionTextView = findViewById(R.id.questionTextView);
-        optionsRecyclerView = findViewById(R.id.optionsRecyclerView);
+        optionsRecyclerView = findViewById(R.id.dashboardItemRecyclerView);
         optionsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         pollReference = FirebaseDatabase.getInstance().getReference("polls");
@@ -51,42 +53,21 @@ public class VoteActivity extends AppCompatActivity {
                         return;
                     }
                 }
-                // Handle error: Poll not found
-                Toast.makeText(VoteActivity.this, "Poll not found", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DashboardItemActivity.this, "Poll not found", Toast.LENGTH_SHORT).show();
                 finish();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle error
-                Toast.makeText(VoteActivity.this, "Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(DashboardItemActivity.this, "Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
     }
 
-    private void voteForOption(int position) {
-        if (poll != null && position >= 0 && position < poll.getOptions().size()) {
-            DatabaseReference pollNodeReference = pollReference.child(pollTitle);
-            ArrayList<Integer> votes = new ArrayList<>(poll.getVotes());
-            votes.set(position, votes.get(position) + 1);
-            pollNodeReference.child("votes").setValue(votes);
-
-            Toast.makeText(this, "Voted for: " + poll.getOptions().get(position), Toast.LENGTH_SHORT).show();
-            finish();
-        } else {
-            Toast.makeText(this, "An error occurred", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void displayPoll() {
         questionTextView.setText(poll.getQuestion());
-        optionAdapter = new OptionAdapter(poll.getOptions(), new OptionAdapter.OnOptionClickListener() {
-            @Override
-            public void onOptionClick(int position) {
-                voteForOption(position);
-            }
-        });
-        optionsRecyclerView.setAdapter(optionAdapter);
+        dashboardAdapter = new DashboardAdapter(poll.getOptions(),poll.getVotes());
+        optionsRecyclerView.setAdapter(dashboardAdapter);
     }
 }

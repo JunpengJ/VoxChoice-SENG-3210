@@ -45,24 +45,34 @@ public class MainActivity extends AppCompatActivity {
                 }
                 Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
 */
-                FirebaseConnector.checkLogin(un, pass, new FirebaseConnector.LoginCallback() {
-                    @Override
-                    public void onLoginResult(String accountType) {
-                        String loginAttempt = accountType;
-                        System.out.println(loginAttempt);
-                        if (loginAttempt == "ADMIN") {
-                            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(MainActivity.this, AdminMain.class));
-                            password.setText("");
-                        } else if (loginAttempt == "VOTER") {
-                            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(MainActivity.this, VoterMain.class));
-                            password.setText("");
-                        } else {
-                            Toast.makeText(MainActivity.this, "Wrong Username or Password", Toast.LENGTH_SHORT).show();
-                        }
+                if (username.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
+                    if (!username.getText().toString().isEmpty()) {
+                        Toast.makeText(MainActivity.this, "Password Cannot Be Empty", Toast.LENGTH_SHORT).show();
+                    } else if (!password.getText().toString().isEmpty()) {
+                        Toast.makeText(MainActivity.this, "Username Cannot Be Empty", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Fields Cannot Be Blank", Toast.LENGTH_SHORT).show();
                     }
-                });
+                } else {
+                    FirebaseConnector.checkLogin(un, pass, new FirebaseConnector.LoginCallback() {
+                        @Override
+                        public void onLoginResult(String accountType) {
+                            String loginAttempt = accountType;
+                            System.out.println(loginAttempt);
+                            if (loginAttempt == "ADMIN") {
+                                Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(MainActivity.this, AdminMain.class));
+                                password.setText("");
+                            } else if (loginAttempt == "VOTER") {
+                                Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(MainActivity.this, VoterMain.class));
+                                password.setText("");
+                            } else {
+                                Toast.makeText(MainActivity.this, "Wrong Username or Password", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
             }
         });
         register_button.setOnClickListener(new View.OnClickListener() {

@@ -32,16 +32,26 @@ public class Registration extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                TODO: Check DB entry for username existing
-//                if (username.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
-//                    Toast.makeText(Registration.this, "Fields Cannot Be Blank", Toast.LENGTH_SHORT).show();
-//                } else {
+                if (username.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
+                    if (!username.getText().toString().isEmpty()) {
+                        Toast.makeText(Registration.this, "Password Cannot Be Empty", Toast.LENGTH_SHORT).show();
+                    } else if (!password.getText().toString().isEmpty()) {
+                        Toast.makeText(Registration.this, "Username Cannot Be Empty", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(Registration.this, "Fields Cannot Be Blank", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
 
-                String un = username.getText().toString();
-                String pass = password.getText().toString();
-                String accType = "VOTER";
-                if (admin_switch.isChecked()) accType = "ADMIN";
+                    String un = username.getText().toString();
+                    String pass = password.getText().toString();
+                    String accType = "VOTER";
+                    if (admin_switch.isChecked()) accType = "ADMIN";
 
-                FirebaseConnector.addUser(un, pass, accType);
+                    FirebaseConnector.addUser(un, pass, accType);
+
+                    Toast.makeText(Registration.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         });
         register_back_button.setOnClickListener(new View.OnClickListener() {
