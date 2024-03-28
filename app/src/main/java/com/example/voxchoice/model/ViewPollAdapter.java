@@ -17,14 +17,13 @@ import java.util.List;
 
 public class ViewPollAdapter extends RecyclerView.Adapter<ViewPollAdapter.PollViewHolder> {
     private List<Poll> pollList;
-    private OnPollClickListener onPollClickListener; // Declare the listener
+    private OnPollClickListener onPollClickListener;
 
     public ViewPollAdapter(List<Poll> pollList, OnPollClickListener onPollClickListener) {
         this.pollList = pollList;
-        this.onPollClickListener = onPollClickListener; // Initialize the listener
+        this.onPollClickListener = onPollClickListener;
     }
 
-    // Define the custom interface
     public interface OnPollClickListener {
         void onPollClick(int position);
     }
@@ -49,7 +48,6 @@ public class ViewPollAdapter extends RecyclerView.Adapter<ViewPollAdapter.PollVi
 
     public static class PollViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private Button titleButton;
-//        private List<Poll> pollList;
         private Context context;
         private OnPollClickListener onPollClickListener;
 

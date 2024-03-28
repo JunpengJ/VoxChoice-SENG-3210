@@ -62,11 +62,9 @@ public class CreatePoll extends AppCompatActivity {
         if (!title.isEmpty() && !question.isEmpty() && !options.isEmpty() && !placeholderVotes.isEmpty()) {
             Poll newPoll = new Poll(title, question, options, placeholderVotes);
 
-            // Get reference to the "polls" node in the database
             database = FirebaseDatabase.getInstance("https://voxchoice-5d7c9-default-rtdb.firebaseio.com/");
             databaseReference = database.getReference("polls");
 
-            // Set the poll under the title node directly
             databaseReference.child(title).setValue(newPoll);
 
             Toast.makeText(CreatePoll.this, "Poll Created", Toast.LENGTH_SHORT).show();

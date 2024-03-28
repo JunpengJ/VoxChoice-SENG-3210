@@ -48,7 +48,7 @@ public class VoteActivity extends AppCompatActivity {
                     poll = snapshot.getValue(Poll.class);
                     if (poll != null) {
                         displayPoll();
-                        return; // Exit loop after finding the poll
+                        return;
                     }
                 }
                 // Handle error: Poll not found
@@ -64,22 +64,17 @@ public class VoteActivity extends AppCompatActivity {
             }
         });
     }
-    // Inside VoteActivity class
 
     private void voteForOption(int position) {
-        // Ensure that poll object is not null
         if (poll != null && position >= 0 && position < poll.getOptions().size()) {
-            // Update the vote count for the selected option in the database
-            DatabaseReference pollNodeReference = pollReference.child(pollTitle); // Reference to the specific poll node
-            ArrayList<Integer> votes = new ArrayList<>(poll.getVotes()); // Create a copy of the votes list
-            votes.set(position, votes.get(position) + 1); // Increment the vote count for the selected option
-            pollNodeReference.child("votes").setValue(votes); // Update the votes in the database
+            DatabaseReference pollNodeReference = pollReference.child(pollTitle);
+            ArrayList<Integer> votes = new ArrayList<>(poll.getVotes());
+            votes.set(position, votes.get(position) + 1);
+            pollNodeReference.child("votes").setValue(votes);
 
-            // Inform the user that their vote has been counted
             Toast.makeText(this, "Voted for: " + poll.getOptions().get(position), Toast.LENGTH_SHORT).show();
             finish();
         } else {
-            // Handle error: Invalid position or poll object is null
             Toast.makeText(this, "An error occurred", Toast.LENGTH_SHORT).show();
         }
     }

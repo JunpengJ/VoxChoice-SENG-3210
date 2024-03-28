@@ -11,10 +11,7 @@ public class User {
         this.password = password;
         this.account_type = account_type;
     }
-//    public User(String username, String password) {
-//        this.username = username;
-//        this.password = password;
-//    }
+
     public String getUsername() {
         return username;
     }

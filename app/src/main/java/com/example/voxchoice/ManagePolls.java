@@ -73,7 +73,6 @@ public class ManagePolls extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle errors
                 Log.e("DatabaseError", databaseError.getMessage());
             }
         });
@@ -87,18 +86,15 @@ public class ManagePolls extends AppCompatActivity {
                 .setTitle("Confirm Delete")
                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // DELETE
                         Toast.makeText(ManagePolls.this, title + " deleted", Toast.LENGTH_SHORT).show();
                         database = FirebaseDatabase.getInstance("https://voxchoice-5d7c9-default-rtdb.firebaseio.com/");
                         databaseReference = database.getReference("polls");
 
-                        // Retrieve the entire Poll object from Firebase
                         databaseReference.child(title).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 Poll poll = dataSnapshot.getValue(Poll.class);
                                 if (poll != null) {
-                                    // Remove the poll from Firebase
                                     dataSnapshot.getRef().removeValue();
                                     deletePollAdapter.notifyDataSetChanged();
                                 }
@@ -106,7 +102,6 @@ public class ManagePolls extends AppCompatActivity {
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
-                                // Handle errors
                                 Log.e("DatabaseError", databaseError.getMessage());
                             }
                         });

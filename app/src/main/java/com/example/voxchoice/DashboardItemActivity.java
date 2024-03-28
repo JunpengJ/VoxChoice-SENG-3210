@@ -33,7 +33,6 @@ public class DashboardItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_item);
 
-        // Retrieve pollTitle from intent extras
         pollTitle = getIntent().getStringExtra("pollTitle");
 
         TextView pollTitleTextView = findViewById(R.id.pollTitleTextView);
@@ -51,17 +50,15 @@ public class DashboardItemActivity extends AppCompatActivity {
                     poll = snapshot.getValue(Poll.class);
                     if (poll != null) {
                         displayPoll();
-                        return; // Exit loop after finding the poll
+                        return;
                     }
                 }
-                // Handle error: Poll not found
                 Toast.makeText(DashboardItemActivity.this, "Poll not found", Toast.LENGTH_SHORT).show();
                 finish();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle error
                 Toast.makeText(DashboardItemActivity.this, "Error: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                 finish();
             }
