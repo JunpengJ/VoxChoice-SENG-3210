@@ -15,6 +15,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
+import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -73,6 +74,8 @@ public class TC_04 {
                         isDisplayed()));
         materialButton.perform(click());
 
+        SystemClock.sleep(1000);
+
         ViewInteraction textView = onView(
                 allOf(withId(R.id.voxChoiceTitle), withText("VoxChoice"),
                         withParent(withParent(withId(android.R.id.content))),
@@ -116,6 +119,8 @@ public class TC_04 {
                                 0),
                         isDisplayed()));
         materialButton2.perform(click());
+
+        SystemClock.sleep(1000);
 
         ViewInteraction textView3 = onView(
                 allOf(withId(R.id.voxChoiceTitle), withText("VoxChoice"),
@@ -166,6 +171,8 @@ public class TC_04 {
                         isDisplayed()));
         materialButton3.perform(click());
 
+        SystemClock.sleep(1000);
+
         ViewInteraction textView7 = onView(
                 allOf(withId(R.id.voxChoiceTitle), withText("VoxChoice"),
                         withParent(withParent(withId(android.R.id.content))),
@@ -193,6 +200,8 @@ public class TC_04 {
                                 0),
                         isDisplayed()));
         materialButton4.perform(click());
+
+        SystemClock.sleep(1000);
 
         ViewInteraction textView9 = onView(
                 allOf(withId(R.id.voxChoiceTitle), withText("VoxChoice"),
@@ -233,6 +242,8 @@ public class TC_04 {
                         isDisplayed()));
         materialButton5.perform(click());
 
+        SystemClock.sleep(1000);
+
         ViewInteraction appCompatEditText3 = onView(
                 allOf(withId(R.id.username_log_in), withText("admin"),
                         childAtPosition(
@@ -242,6 +253,8 @@ public class TC_04 {
                                 2),
                         isDisplayed()));
         appCompatEditText3.perform(click());
+
+        SystemClock.sleep(1000);
 
         ViewInteraction appCompatEditText4 = onView(
                 allOf(withId(R.id.username_log_in), withText("admin"),
@@ -284,6 +297,8 @@ public class TC_04 {
                         isDisplayed()));
         materialButton6.perform(click());
 
+        SystemClock.sleep(1000);
+
         ViewInteraction textView12 = onView(
                 allOf(withId(R.id.voxChoiceTitle), withText("VoxChoice"),
                         withParent(withParent(withId(android.R.id.content))),
@@ -321,6 +336,8 @@ public class TC_04 {
                         isDisplayed()));
         materialButton7.perform(click());
 
+        SystemClock.sleep(1000);
+
         ViewInteraction textView14 = onView(
                 allOf(withId(R.id.voxChoiceTitle), withText("VoxChoice"),
                         withParent(withParent(withId(android.R.id.content))),
@@ -351,6 +368,8 @@ public class TC_04 {
                                 2),
                         isDisplayed()));
         materialButton8.perform(click());
+
+        SystemClock.sleep(1000);
 
         ViewInteraction textView16 = onView(
                 allOf(withId(R.id.voxChoiceTitle), withText("VoxChoice"),

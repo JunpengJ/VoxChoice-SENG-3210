@@ -13,6 +13,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
+import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -70,6 +71,8 @@ public class TC_02 {
                         isDisplayed()));
         materialButton.perform(click());
 
+        SystemClock.sleep(1000);
+
         ViewInteraction materialButton2 = onView(
                 allOf(withId(R.id.button_manage_polls), withText("Manage Polls"),
                         childAtPosition(
@@ -81,6 +84,8 @@ public class TC_02 {
                         isDisplayed()));
         materialButton2.perform(click());
 
+        SystemClock.sleep(1000);
+
         ViewInteraction materialButton3 = onView(
                 allOf(withId(R.id.titleButton), withText("Vote for food"),
                         childAtPosition(
@@ -91,6 +96,8 @@ public class TC_02 {
                         isDisplayed()));
         materialButton3.perform(click());
 
+        SystemClock.sleep(1000);
+
         ViewInteraction materialButton4 = onView(
                 allOf(withId(android.R.id.button1), withText("Delete"),
                         childAtPosition(
@@ -99,6 +106,8 @@ public class TC_02 {
                                         0),
                                 3)));
         materialButton4.perform(scrollTo(), click());
+
+        SystemClock.sleep(1000);
 
         ViewInteraction materialButton5 = onView(
                 allOf(withId(R.id.button_create_poll), withText("Create a New Poll"),
@@ -109,6 +118,8 @@ public class TC_02 {
                                 2),
                         isDisplayed()));
         materialButton5.perform(click());
+
+        SystemClock.sleep(1000);
 
         ViewInteraction appCompatEditText3 = onView(
                 allOf(withId(R.id.titleEditText),
@@ -130,6 +141,8 @@ public class TC_02 {
                         isDisplayed()));
         appCompatEditText4.perform(click());
 
+        SystemClock.sleep(1000);
+
         ViewInteraction appCompatEditText5 = onView(
                 allOf(withId(R.id.questionEditText),
                         childAtPosition(
@@ -138,7 +151,7 @@ public class TC_02 {
                                         0),
                                 4),
                         isDisplayed()));
-        appCompatEditText5.perform(replaceText("Choice you toping"), closeSoftKeyboard());
+        appCompatEditText5.perform(replaceText("Choose your topping"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText6 = onView(
                 allOf(withId(R.id.optionEditText),
@@ -162,6 +175,8 @@ public class TC_02 {
                         isDisplayed()));
         materialButton6.perform(click());
 
+        SystemClock.sleep(1000);
+
         ViewInteraction appCompatEditText7 = onView(
                 allOf(withId(R.id.optionEditText),
                         childAtPosition(
@@ -184,6 +199,8 @@ public class TC_02 {
                         isDisplayed()));
         materialButton7.perform(click());
 
+        SystemClock.sleep(1000);
+
         ViewInteraction materialButton8 = onView(
                 allOf(withId(R.id.button_create_poll), withText("Create Poll"),
                         childAtPosition(
@@ -193,6 +210,8 @@ public class TC_02 {
                                 0),
                         isDisplayed()));
         materialButton8.perform(click());
+
+        SystemClock.sleep(1000);
     }
 
     private static Matcher<View> childAtPosition(

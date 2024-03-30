@@ -12,6 +12,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
+import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -69,6 +70,8 @@ public class TC_05 {
                         isDisplayed()));
         materialButton.perform(click());
 
+        SystemClock.sleep(1000);
+
         ViewInteraction materialButton2 = onView(
                 allOf(withId(R.id.button_log_out), withText("Log Out"),
                         childAtPosition(
@@ -79,6 +82,8 @@ public class TC_05 {
                                 4),
                         isDisplayed()));
         materialButton2.perform(click());
+
+        SystemClock.sleep(1000);
 
         ViewInteraction appCompatEditText3 = onView(
                 allOf(withId(R.id.password_log_in),
@@ -101,6 +106,8 @@ public class TC_05 {
                         isDisplayed()));
         materialButton3.perform(click());
 
+        SystemClock.sleep(1000);
+
         ViewInteraction materialButton4 = onView(
                 allOf(withId(R.id.log_in_button), withText("Log In"),
                         childAtPosition(
@@ -111,6 +118,8 @@ public class TC_05 {
                                 4),
                         isDisplayed()));
         materialButton4.perform(click());
+
+        SystemClock.sleep(1000);
     }
 
     private static Matcher<View> childAtPosition(

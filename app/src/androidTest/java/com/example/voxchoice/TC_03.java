@@ -12,6 +12,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
 
+import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -69,6 +70,8 @@ public class TC_03 {
                         isDisplayed()));
         materialButton.perform(click());
 
+        SystemClock.sleep(1000);
+
         ViewInteraction materialButton2 = onView(
                 allOf(withId(R.id.button_dashboard), withText("View Dashboard"),
                         childAtPosition(
@@ -80,6 +83,8 @@ public class TC_03 {
                         isDisplayed()));
         materialButton2.perform(click());
 
+        SystemClock.sleep(1000);
+
         ViewInteraction materialButton3 = onView(
                 allOf(withId(R.id.titleButton), withText("Lunch Poll"),
                         childAtPosition(
@@ -89,6 +94,8 @@ public class TC_03 {
                                 0),
                         isDisplayed()));
         materialButton3.perform(click());
+
+        SystemClock.sleep(1000);
     }
 
     private static Matcher<View> childAtPosition(
