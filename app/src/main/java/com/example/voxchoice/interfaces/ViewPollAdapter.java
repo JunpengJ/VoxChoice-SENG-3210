@@ -1,7 +1,6 @@
-package com.example.voxchoice.model;
+package com.example.voxchoice.interfaces;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.voxchoice.R;
-import com.example.voxchoice.VoteActivity;
+import com.example.voxchoice.model.Poll;
 
 import java.util.List;
 

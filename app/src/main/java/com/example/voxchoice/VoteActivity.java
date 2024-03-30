@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.voxchoice.model.OptionAdapter;
+import com.example.voxchoice.interfaces.OptionAdapter;
 import com.example.voxchoice.model.Poll;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

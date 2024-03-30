@@ -1,4 +1,4 @@
-package com.example.voxchoice.model;
+package com.example.voxchoice.interfaces;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.voxchoice.R;
+import com.example.voxchoice.model.Poll;
 
 import java.util.List;
 

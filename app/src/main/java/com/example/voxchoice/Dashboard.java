@@ -10,9 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.voxchoice.model.DashboardAdapter;
 import com.example.voxchoice.model.Poll;
-import com.example.voxchoice.model.ViewPollAdapter;
+import com.example.voxchoice.interfaces.ViewPollAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

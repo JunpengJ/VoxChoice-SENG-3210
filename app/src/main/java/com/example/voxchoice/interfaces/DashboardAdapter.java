@@ -1,4 +1,4 @@
-package com.example.voxchoice.model;
+package com.example.voxchoice.interfaces;
 
 import android.view.LayoutInflater;
 import android.view.View;

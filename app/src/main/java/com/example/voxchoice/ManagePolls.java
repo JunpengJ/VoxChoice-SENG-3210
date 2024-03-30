@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.voxchoice.model.Poll;
-import com.example.voxchoice.model.DeletePollAdapter;
+import com.example.voxchoice.interfaces.DeletePollAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

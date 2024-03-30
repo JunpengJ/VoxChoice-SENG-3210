@@ -1,4 +1,4 @@
-package com.example.voxchoice.model;
+package com.example.voxchoice.interfaces;
 
 import android.annotation.SuppressLint;
 import android.util.Log;
@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.voxchoice.MainActivity;
+import com.example.voxchoice.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;

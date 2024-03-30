@@ -9,15 +9,13 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.voxchoice.model.DashboardAdapter;
+import com.example.voxchoice.interfaces.DashboardAdapter;
 import com.example.voxchoice.model.Poll;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 public class DashboardItemActivity extends AppCompatActivity {
     private String pollTitle;
